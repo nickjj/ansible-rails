@@ -115,7 +115,7 @@ Let's say you want to edit a few defaults, you can do this by opening or creatin
 
 ```
 ---
-# Variables that could have been populated to satisify other roles, it doesn't matter.
+# Variables that could have been populated to satisfy other roles, it doesn't matter.
 user_name: storm
 secrets_load_path: ~/dev/secrets
 
@@ -130,7 +130,7 @@ rails_deploy_git_url: "git@bitbucket.org:yourname/testproj.git"
 rails_deploy_migrate_master_host: "{{ groups['app'][0] }}"
 ```
 
-#### What is the ssh keypair used for and how do I set it up?
+#### What is the ssh keypair used for and how do you set it up?
 
 The application servers should use ssh keys to pull code from your remote git repo. To do that successfully requires generating a public and private ssh keypair and placing it on each app server. This could have been generated automatically but if you had 10 app servers then you would end up with 10 different keypairs which means you would have to add 10 different deploy keys to github, bitbucket or whatever remote git host you're using.
 
@@ -140,7 +140,7 @@ The `secrets_load_path` is the local path where the keypair resides, by default 
 
 To generate the keypair open a terminal and enter: `ssh-keygen -t rsa`.
 
-You should use the default file names but make sure you do not save them in the default location because you could accidentally overwrite your usual keys. You should also keep the passphrase empty. Once you have the keypair then place them in the `secrets_load_path` path.
+You should use the default file names but make sure you do not save them in the default location because you could accidentally overwrite your usual keys. You should also keep the pass phrase empty. Once you have the keypair then place them in the `secrets_load_path` path.
 
 The last step you would need to do is after creating your repo on github or bitbucket, you must goto the admin area for this specific repo and add the public deploy key. Now each deployed app server is only capable of performing read-only actions on your repo. You do not have to worry about a potentially sinister digital ocean employee sabotaging your git repo.
 
