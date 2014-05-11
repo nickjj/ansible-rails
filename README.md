@@ -1,4 +1,4 @@
-## What is ansible-rails-deploy?
+## What is ansible-rails?
 
 It is an [ansible](http://www.ansible.com/home) role to deploy a rails application.
 
@@ -8,13 +8,13 @@ I've been a rails developer for a little over a year now and every time I have t
 
 #### 1. Setting up infrastructure is not easy
 
-Unless you want to pay a hefty price for Heroku then you'll likely settle on using a cloud provider such as digital ocean, AWS, rackspace, linode or any other popular service. This also means it's up to you to figure out how to provision your server and manage the infrastructure.
+Unless you want to pay a hefty price for heroku then you'll likely settle on using a cloud provider such as digital ocean, AWS, rackspace, linode or any other popular service. This also means it's up to you to figure out how to provision your server and manage the infrastructure.
 
 #### 2. Capistrano is not the answer for app deployments
 
-Let's say you pass that hurdle and get your server(s) up. Now it's time to get your application on 1 or more servers.
+Let's say you pass that hurdle, now it's time to get your application on 1 or more servers.
 
-Capistrano is a work horse but one of its main problems is it's slow. A simple rails application that didn't have to run any migrations or precompile new assets would routinely take 60 seconds on an ec2 micro instance. I timed a bunch of deploys months ago and I was averaging around 100 seconds per deploy and keep in mind this is deploying everything to 1 server. The same application can be deployed using ansible in 10 seconds and I feel like it could be trimmed down to 3 seconds with more aggressive checks to determine if certain actions need to happen.
+Capistrano is a work horse but one of its main problems is it's slow. A simple rails app that didn't have to run any migrations or precompile new assets would routinely take 60 seconds on an ec2 micro instance. I timed a bunch of deploys months ago and I was averaging around 100 seconds per deploy and keep in mind this is deploying everything to 1 server. The same app can be deployed using ansible in 10 seconds and I feel like it could be trimmed down to 3 seconds with more aggressive checks to determine if certain actions need to happen.
 
 Capistrano v2's code base is also buggy, no longer maintained and a nightmare to wade through. v3 is better but it's still slow.
 
@@ -108,7 +108,7 @@ To use this role edit your `site.yml` file to look something like this:
 
   roles:
     # Insert other roles here to provision the server before deploying a rails app to it.
-    - { role: nickjj.rails-deploy, tags: rails-deploy }
+    - { role: nickjj.rails, tags: rails }
 ```
 
 Let's say you want to edit a few defaults, you can do this by opening or creating `group_vars/all.yml` which is located relative to your `inventory` directory and then making it look something like this:
@@ -125,7 +125,7 @@ rails_deploy_user: "{{ user_name }}"
 
 rails_deploy_ssh_keypair_local_path: "{{ secrets_load_path }}"
 
-rails_deploy_git_url: "git@bitbucket.org:nickjj/testproj.git"
+rails_deploy_git_url: "git@bitbucket.org:yourname/testproj.git"
 
 rails_deploy_migrate_master_host: "{{ groups['app'][0] }}"
 ```
@@ -138,16 +138,15 @@ To get around this you can generate a single keypair and place them in a local d
 
 The `secrets_load_path` is the local path where the keypair resides, by default it expects you name them `id_rsa` and `id_rsa.pub` but you can overwrite the file names.
 
-To generate the keypair open a terminal and enter:  
-`ssh-keygen -t rsa`
+To generate the keypair open a terminal and enter: `ssh-keygen -t rsa`
 
-You should use the default file names but make sure you do not save them in the default location because you could accidentalty overwrite your usual keys. You should also keep the passphrase empty. Once you have the keypair then place them in the `secrets_load_path` path.
+You should use the default file names but make sure you do not save them in the default location because you could accidentally overwrite your usual keys. You should also keep the passphrase empty. Once you have the keypair then place them in the `secrets_load_path` path.
 
-The last step you would need to do is after creating your repo on github or bitbucket, you must goto the admin area for this specific repo and add the public deploy key. Now each deployed app server is only capable of performing read-only actions on your repo. You do not have to worry about a potentially sinister digital ocean employee sabatoging your git repo.
+The last step you would need to do is after creating your repo on github or bitbucket, you must goto the admin area for this specific repo and add the public deploy key. Now each deployed app server is only capable of performing read-only actions on your repo. You do not have to worry about a potentially sinister digital ocean employee sabotaging your git repo.
 
 ## Installation
 
-`$ ansible-galaxy install nickjj.rails-deploy`
+`$ ansible-galaxy install nickjj.rails`
 
 ## Running adhoc commands
 
@@ -155,7 +154,7 @@ If you have migrations and/or precompile assets turned off and you want to handl
 
 Since most commands would depend on your environment being set, this role outputs whatever you have set in `rails_deploy_env` to `/etc/default/APP_NAME` so you can `source` this file for all of your environment variables.
 
-Here is an example of executing `rake db:version` on all [app] servers:
+Here is an example of executing `rake db:version` on all **app** servers:
 
 `ansible app -m shell -a 'executable=/bin/bash source /etc/default/testproj && cd ~/testproj.git && /usr/local/rvm/bin/rvm default do bundle exec rake db:version' -u deploy -i /path/to/your/inventory/`
 
