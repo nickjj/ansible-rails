@@ -1,0 +1,34 @@
+---
+- name: ensure gems are installed
+  command: "{{ rails_deploy_bundle }} install --deployment --path={{ rails_deploy_bundle_path }} --without={{ rails_deploy_bundle_without|difference([rails_deploy_env.RAILS_ENV])|join(',') }} chdir={{ rails_deploy_path }}"
+  sudo: false
+  remote_user: "{{ rails_deploy_user }}"
+  when: repo_status.changed
+
+- name: ensure database is created
+  command: "{{ rails_deploy_bundle }} exec rake db:create chdir={{ rails_deploy_path }}"
+  sudo: false
+  remote_user: "{{ rails_deploy_user }}"
+  when: not repo_status.before and inventory_hostname == rails_deploy_migrate_master_host
+  environment: rails_deploy_env
+
+- name: ensure database is migrated
+  command: "{{ rails_deploy_bundle }} exec rake db:migrate chdir={{ rails_deploy_path }}"
+  sudo: false
+  remote_user: "{{ rails_deploy_user }}"
+  when: repo_status.changed and inventory_hostname == rails_deploy_migrate_master_host and rails_deploy_migrate
+  environment: rails_deploy_env
+
+- name: ensure database is seeded
+  command: "{{ rails_deploy_bundle }} exec rake db:seed chdir={{ rails_deploy_path }}"
+  sudo: false
+  remote_user: "{{ rails_deploy_user }}"
+  when: repo_status.changed and inventory_hostname == rails_deploy_migrate_master_host and seeds_state.stat.md5|default('0') != seeds_new_state.stat.md5|default('0')
+  environment: rails_deploy_env
+
+- name: ensure assets are precompiled
+  command: "{{ rails_deploy_bundle }} exec rake assets:precompile chdir={{ rails_deploy_path }}"
+  sudo: false
+  remote_user: "{{ rails_deploy_user }}"
+  when: repo_status.changed and rails_deploy_precompile_assets
+  environment: rails_deploy_env

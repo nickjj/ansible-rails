@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: Nick Janetakis
+  description: Deploy a rails application using git.
+  company: 
+  license: license (MIT)
+  min_ansible_version: 1.5
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+
+  categories:
+  - system
+  - web
+
+dependencies: []

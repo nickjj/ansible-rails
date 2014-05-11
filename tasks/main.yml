@@ -1,0 +1,27 @@
+---
+# install git and pg gem dependencies
+- include: dependencies.yml
+
+# write out an environment file so you can source it for adhoc commands
+- include: environment.yml
+
+# transfer the ssh public and private keys
+- include: keypair.yml
+
+# pre-git value of the seeds file to compare against the upcoming version
+- name: detect old db/seeds.rb state
+  stat: path={{ rails_deploy_path }}/db/seeds.rb
+  register: seeds_state
+  when: inventory_hostname == rails_deploy_migrate_master_host
+
+# update the app code from a remote git repo
+- include: git.yml
+
+# post-git value of the seeds file to see if we need to seed the db
+- name: detect new db/seeds.rb state
+  stat: path={{ rails_deploy_path }}/db/seeds.rb
+  register: seeds_new_state
+  when: inventory_hostname == rails_deploy_migrate_master_host
+
+# run various commands to deploy rails properly
+- include: deploy.yml

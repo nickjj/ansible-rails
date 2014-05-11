@@ -1,0 +1,6 @@
+---
+- name: ensure git is installed
+  apt: pkg=git-core state=latest update_cache=true cache_valid_time=86400
+
+- name: ensure pg gem dependency is installed
+  apt: pkg=libpq-dev state=latest update_cache=true cache_valid_time=86400
