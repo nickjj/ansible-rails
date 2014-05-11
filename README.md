@@ -138,7 +138,7 @@ To get around this you can generate a single keypair and place them in a local d
 
 The `secrets_load_path` is the local path where the keypair resides, by default it expects you name them `id_rsa` and `id_rsa.pub` but you can overwrite the file names.
 
-To generate the keypair open a terminal and enter: `ssh-keygen -t rsa`
+To generate the keypair open a terminal and enter: `ssh-keygen -t rsa`.
 
 You should use the default file names but make sure you do not save them in the default location because you could accidentally overwrite your usual keys. You should also keep the passphrase empty. Once you have the keypair then place them in the `secrets_load_path` path.
 
@@ -163,6 +163,10 @@ As you can see it's pretty long and annoying to type. I recommend creating a wra
 ## Requirements
 
 Tested on ubuntu 12.04 LTS but it should work on other versions that are similar.
+
+## Ansible galaxy
+
+You can find it on the official [ansible galaxy](https://galaxy.ansible.com/list#/roles/866) if you want to rate it.
 
 ## License
 
