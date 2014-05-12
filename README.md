@@ -18,7 +18,7 @@ Capistrano is a work horse but one of its main problems is it's slow. A simple r
 
 Capistrano v2's code base is also buggy, no longer maintained and a nightmare to wade through. v3 is better but it's still slow.
 
-Another issue I have with capistrano is that it's another tool that you need to learn and maintain. I don't want to use a tool to provision my infrastructure and then use another tool to deploy applications. I also don't want to keep track of my infrastructure in 2 places or have to write custom tooling to glue both tools together in a way that half way works and is brittle. Luckily ansible was created to solve this exact issue.
+Another issue I have with capistrano is that it's another tool that you need to learn and maintain. I don't want to use a tool to provision my infrastructure and then use another tool to deploy my applications. I also don't want to keep track of my infrastructure in 2 places or have to write custom tooling to glue both tools together in a way that half way works and is brittle. Luckily ansible was created to solve this exact issue.
 
 Lastly the deploy process is overly complicated. You don't need the concept of a "current" release, a bunch of symlinks and rollbacks. Rollbacks should be handled by fixing your code or just simply rollback your code in git and deploy the last working version.
 
@@ -35,7 +35,7 @@ There are no hard dependencies. As long as you overwrite a few default variables
 Below is a list of default values along with a description of what they do.
 
 ```
-# What is the name of your rails app? It should be lower case and a valid filename.
+# What is the name of your rails app? It should be lower case and a valid file name.
 rails_deploy_app_name: app
 
 # Which user account on the system will own the deployed files?
@@ -140,9 +140,9 @@ The `secrets_load_path` is the local path where the keypair resides, by default 
 
 To generate the keypair open a terminal and enter: `ssh-keygen -t rsa`.
 
-You should use the default file names but make sure you do not save them in the default location because you could accidentally overwrite your usual keys. You should also keep the pass phrase empty. Once you have the keypair then place them in the `secrets_load_path` path.
+You should use the default file names but make sure you do not save them in the default location because you could accidentally overwrite your usual keys. You should also keep the passphrase empty. Once you have the keypair then place them in the `secrets_load_path` path.
 
-The last step you would need to do is after creating your repo on github or bitbucket, you must goto the admin area for this specific repo and add the public deploy key. Now each deployed app server is only capable of performing read-only actions on your repo. You do not have to worry about a potentially sinister digital ocean employee sabotaging your git repo.
+The last step you would need to do after creating your repo on github or bitbucket is to goto the admin area for this specific repo and add the public deploy key. Now each deployed app server is only capable of performing read-only actions on your repo. You do not have to worry about a potentially sinister digital ocean employee sabotaging your git repo.
 
 ## Installation
 
