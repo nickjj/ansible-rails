@@ -160,6 +160,10 @@ Here is an example of executing `rake db:version` on all **app** servers:
 
 As you can see it's pretty long and annoying to type. I recommend creating a wrapper bash script to hide some of the complexity if you plan to run adhoc commands on a regular basis. Obviously you will need to replace certain things too if you happen to not be using rvm.
 
+## Looking for an end to end solution?
+
+Check out [rails-basic](https://github.com/nickjj/ansible-playbooks) to see how you can use this role along with a few other roles to create a typical rails application server stack.
+
 ## Requirements
 
 Tested on ubuntu 12.04 LTS but it should work on other versions that are similar.
