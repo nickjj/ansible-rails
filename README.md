@@ -144,6 +144,10 @@ You should use the default file names but make sure you do not save them in the 
 
 The last step you would need to do after creating your repo on github or bitbucket is to goto the admin area for this specific repo and add the public deploy key. Now each deployed app server is only capable of performing read-only actions on your repo. You do not have to worry about a potentially sinister digital ocean employee sabotaging your git repo.
 
+#### Tracking migrations in other roles
+
+This role will set a `rails_deploy_ran_migration` fact. You can use this to determine whether or not the database was migrated in the last deploy. For example in [nickjj.pumacorn](https://github.com/nickjj/ansible-pumacorn) I use this to decide if the server can be reloaded with no downtime or requires a full restart.
+
 ## Installation
 
 `$ ansible-galaxy install nickjj.rails`

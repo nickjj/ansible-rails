@@ -17,7 +17,12 @@
   sudo: false
   remote_user: "{{ rails_deploy_user }}"
   when: repo_status.changed and inventory_hostname == rails_deploy_migrate_master_host and rails_deploy_migrate
+  register: migrate_output
   environment: rails_deploy_env
+
+- name: ensure rails_deploy_ran_migration fact is set
+  set_fact: rails_deploy_ran_migration="{{ 'migrating' in migrate_output.stdout|default('') }}"
+  when: repo_status.changed and inventory_hostname == rails_deploy_migrate_master_host and rails_deploy_migrate
 
 - name: ensure database is seeded
   command: "{{ rails_deploy_bundle }} exec rake db:seed chdir={{ rails_deploy_path }}"
