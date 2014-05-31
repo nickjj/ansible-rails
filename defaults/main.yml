@@ -1,6 +1,6 @@
 rails_deploy_app_name: app
 rails_deploy_user: deploy
-rails_deploy_path: /home/deploy/{{ rails_deploy_app_name }}.git
+rails_deploy_path: /home/{{ rails_deploy_user }}/{{ rails_deploy_app_name }}.git
 
 rails_deploy_ssh_keypair_local_path: ~/dev/secrets/
 rails_deploy_ssh_private_key_name: id_rsa
