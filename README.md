@@ -46,7 +46,7 @@ rails_deploy_path: /home/{{ rails_deploy_user }}/{{ rails_deploy_app_name }}.git
 
 # The SSH keypair so that the server can pull in code from a remote git server.
 # [more on this later in the readme]
-rails_deploy_ssh_keypair_local_path: ~/dev/secrets/
+rails_deploy_ssh_keypair_local_path: /home/yourname/dev/secrets/
 rails_deploy_ssh_private_key_name: id_rsa
 rails_deploy_ssh_public_key_name: id_rsa.pub
 
@@ -117,7 +117,7 @@ Let's say you want to edit a few defaults, you can do this by opening or creatin
 ---
 # Variables that could have been populated to satisfy other roles, it doesn't matter.
 user_name: storm
-secrets_load_path: ~/dev/secrets
+secrets_load_path: home/yourname/dev/secrets
 
 # Overwrite a few rails deploy variables.
 rails_deploy_app_name: testproj
@@ -160,7 +160,7 @@ Since most commands would depend on your environment being set, this role output
 
 Here is an example of executing `rake db:version` on all **app** servers:
 
-`ansible app -m shell -a 'executable=/bin/bash source /etc/default/testproj && cd ~/testproj.git && /usr/local/rvm/bin/rvm default do bundle exec rake db:version' -u deploy -i /path/to/your/inventory/`
+`ansible app -m shell -a 'executable=/bin/bash source /etc/default/testproj && cd /home/yourname/dev/testproj.git && /usr/local/rvm/bin/rvm default do bundle exec rake db:version' -u deploy -i /path/to/your/inventory/`
 
 As you can see it's pretty long and annoying to type. I recommend creating a wrapper bash script to hide some of the complexity if you plan to run adhoc commands on a regular basis. Obviously you will need to replace certain things too if you happen to not be using rvm.
 
