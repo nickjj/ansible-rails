@@ -117,7 +117,7 @@ Let's say you want to edit a few defaults, you can do this by opening or creatin
 ---
 # Variables that could have been populated to satisfy other roles, it doesn't matter.
 user_name: storm
-secrets_load_path: home/yourname/dev/secrets
+secrets_load_path: /home/yourname/dev/secrets
 
 # Overwrite a few rails deploy variables.
 rails_deploy_app_name: testproj
