@@ -93,6 +93,9 @@ rails_deploy_env:
   RAILS_ENV: production
   # FOO: bar
   # SOMETHING: else
+
+# The amount in seconds to cache apt-update.
+apt_cache_valid_time: 86400
 ```
 
 ## Example playbook

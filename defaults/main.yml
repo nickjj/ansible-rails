@@ -26,3 +26,5 @@ rails_deploy_migrate_master_host: "{{ groups['app'][0] }}"
 
 rails_deploy_env:
   RAILS_ENV: production
+
+apt_cache_valid_time: 86400
