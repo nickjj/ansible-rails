@@ -9,7 +9,7 @@
   command: "{{ rails_deploy_bundle }} exec rake db:create chdir={{ rails_deploy_path }}"
   sudo: false
   remote_user: "{{ rails_deploy_user }}"
-  when: not repo_status.before and inventory_hostname == rails_deploy_migrate_master_host
+  when: repo_status.changed and inventory_hostname == rails_deploy_migrate_master_host
   environment: rails_deploy_env
 
 - name: ensure database is migrated
