@@ -46,7 +46,7 @@ rails_deploy_path: /home/{{ rails_deploy_user }}/{{ rails_deploy_app_name }}.git
 
 # The SSH keypair so that the server can pull in code from a remote git server.
 # [more on this later in the readme]
-rails_deploy_ssh_keypair_local_path: /home/yourname/dev/secrets/
+rails_deploy_ssh_keypair_local_path: /home/yourname/dev/secrets
 rails_deploy_ssh_private_key_name: id_rsa
 rails_deploy_ssh_public_key_name: id_rsa.pub
 
