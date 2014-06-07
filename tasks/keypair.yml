@@ -1,6 +1,6 @@
 ---
 - name: ensure ssh keypair is created
-  copy: src="{{ rails_deploy_ssh_keypair_local_path + '/' item }}" dest=/home/{{ rails_deploy_user }}/.ssh/{{ item }} mode=0600
+  copy: src="{{ rails_deploy_ssh_keypair_local_path + '/' + item }}" dest=/home/{{ rails_deploy_user }}/.ssh/{{ item }} mode=0600
   sudo: false
   remote_user: "{{ rails_deploy_user }}"
   with_items:
