@@ -75,7 +75,6 @@ rails_deploy_bundle_without:
   - development
   - staging
   - production
-  - cucumber
   - test
 
 # Should it run migrations and precompile assets?
