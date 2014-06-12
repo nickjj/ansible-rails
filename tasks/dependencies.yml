@@ -4,3 +4,6 @@
 
 - name: ensure pg gem dependency is installed
   apt: pkg=libpq-dev state=latest update_cache=true cache_valid_time={{ apt_cache_valid_time }}
+
+- name: ensure imagemagick is installed
+  apt: pkg=imagemagick state=latest update_cache=true cache_valid_time={{ apt_cache_valid_time }}
