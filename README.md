@@ -59,11 +59,11 @@ rails_deploy_git_version: master
 
 # By default it expects you have ruby installed through rvm but this is not mandatory.
 # Just replace this with the path to your ruby binary.
-rails_deploy_shell_prefix: /usr/local/rvm/bin/rvm default do
+rails_deploy_shell_prefix: /usr/local/rvm/wrappers/default
 
 # What command will start bundler? You shouldn't ever have to change this once you
-# have setup the shell prefix above.
-rails_deploy_bundle: "{{ rails_deploy_shell_prefix }} bundle"
+# have setup the shell prefix above unless you don't use rvm.
+rails_deploy_bundle: "{{ rails_deploy_shell_prefix }}/bundle"
 
 # Where will the gems be installed to? This path is relative to your rails app by default
 # but you can put an absolute path if you want.
