@@ -22,7 +22,7 @@
 
 - name: ensure rails_deploy_ran_migration fact is set
   set_fact: rails_deploy_ran_migration="{{ 'migrating' in migrate_output.stdout|default('') }}"
-  when: repo_status.changed and inventory_hostname == rails_deploy_migrate_master_host and rails_deploy_migrate
+  when: repo_status.changed and rails_deploy_migrate
 
 - name: ensure rails_repo_status_changed fact is set
   set_fact: rails_repo_status_changed="{{ repo_status.changed }}"
