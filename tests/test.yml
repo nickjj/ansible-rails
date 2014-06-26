@@ -11,8 +11,6 @@
     rails_deploy_env:
       RAILS_ENV: production
 
-apt_cache_valid_time: 86400
-
   roles:
     - nickjj.ruby
     - ansible-rails
