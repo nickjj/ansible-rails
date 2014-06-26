@@ -1,8 +1,8 @@
 threads 0,16
 workers 2
 
-pidfile 'tmp/puma.pid'
-port 3000
+pidfile '/tmp/puma.pid'
+port '3000'
 
 # https://github.com/puma/puma/blob/master/examples/config.rb#L125
 prune_bundler
