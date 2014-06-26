@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  remote_user: travis
+  sudo: true
+  vars:
+    rails_deploy_user: travis
+    rails_deploy_path: /tmp/app.git
+    rails_deploy_ssh_keypair_local_path: /tmp
+    rails_deploy_git_url: "file:///home/travis/tests/railsapp"
+
+    rails_deploy_env:
+      RAILS_ENV: production
+
+apt_cache_valid_time: 86400
+
+  roles:
+    - nickjj.ruby
+    - ansible-rails

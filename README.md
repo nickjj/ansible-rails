@@ -1,4 +1,4 @@
-## What is ansible-rails?
+## What is ansible-rails? [![Build Status](https://secure.travis-ci.org/nickjj/ansible-rails.png)](http://travis-ci.org/nickjj/ansible-rails)
 
 It is an [ansible](http://www.ansible.com/home) role to deploy a rails application.
 
