@@ -24,6 +24,9 @@
   set_fact: rails_deploy_ran_migration="{{ 'migrating' in migrate_output.stdout|default('') }}"
   when: repo_status.changed and inventory_hostname == rails_deploy_migrate_master_host and rails_deploy_migrate
 
+- name: ensure rails_repo_status_changed fact is set
+  set_fact: rails_repo_status_changed="{{ repo_status.changed }}"
+
 - name: ensure database is seeded
   command: "{{ rails_deploy_bundle }} exec rake db:seed chdir={{ rails_deploy_path }}"
   sudo: false
