@@ -7,6 +7,7 @@ env:
 
 before_install:
   - "__rvm_unload ; rm -rf ~/.rvm"
+  - "git config --global user.email 'foo@bar.com' && git config --global user.name 'Foo Bar'"
   - "cd tests/railsapp && git init && git add -A && git commit -m 'Initial commit' && cd -"
   - "ssh-keygen -t rsa -P '' -f /tmp/id_rsa"
 
