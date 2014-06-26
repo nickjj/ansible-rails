@@ -24,7 +24,7 @@ script:
     | grep -q 'changed=2.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
-  - "cd /tmp/app.git && bundle exec puma -C config/puma.rb -d"
+  - "cd /tmp/app.git && RAILS_ENV=production bundle exec puma -C config/puma.rb -d"
   - >
     curl -s -o /dev/null -w "%{http_code}" http://localhost:3000
     | grep -q '200'
