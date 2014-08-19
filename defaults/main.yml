@@ -10,6 +10,9 @@ rails_deploy_git_url: "git@bitbucket.org:yourusername/reponame.git"
 rails_deploy_git_version: master
 
 rails_deploy_shell_prefix: /usr/local/rvm/wrappers/default
+
+rails_deploy_apt_packages_required: []
+
 rails_deploy_bundle: "{{ rails_deploy_shell_prefix }}/bundle"
 rails_deploy_bundle_path: vendor/bundle
 rails_deploy_bundle_without:
