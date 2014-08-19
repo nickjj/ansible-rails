@@ -46,6 +46,7 @@ rails_deploy_path: /home/{{ rails_deploy_user }}/{{ rails_deploy_app_name }}.git
 
 # The SSH keypair so that the server can pull in code from a remote git server.
 # [more on this later in the readme]
+rails_deploy_ssh_keypair_copy: true
 rails_deploy_ssh_keypair_local_path: /home/yourname/dev/secrets
 rails_deploy_ssh_private_key_name: id_rsa
 rails_deploy_ssh_public_key_name: id_rsa.pub
@@ -145,6 +146,8 @@ To generate the keypair open a terminal and enter: `ssh-keygen -t rsa`.
 You should use the default file names but make sure you do not save them in the default location because you could accidentally overwrite your usual keys. You should also keep the passphrase empty. Once you have the keypair then place them in the `secrets_load_path` path.
 
 The last step you would need to do after creating your repo on github or bitbucket is to goto the admin area for this specific repo and add the public deploy key. Now each deployed app server is only capable of performing read-only actions on your repo. You do not have to worry about a potentially sinister digital ocean employee sabotaging your git repo.
+
+If you have your a different role configured to manage ssh keys, or are using ssh agent forwarding instead, set rails_deploy_ssh_keypair_copy to false. This will skip copying the ssh keypair.
 
 #### Tracking migrations and repo status in other roles
 
