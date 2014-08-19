@@ -1,6 +1,6 @@
 ---
 - name: ensure local git repo is updated
-  git: repo={{ rails_deploy_git_url }} dest={{ rails_deploy_path }} version=master accept_hostkey=yes
+  git: repo={{ rails_deploy_git_url }} dest={{ rails_deploy_path }} version={{ rails_deploy_git_version }} accept_hostkey=yes
   sudo: false
   remote_user: "{{ rails_deploy_user }}"
   register: repo_status
