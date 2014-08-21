@@ -7,6 +7,7 @@
 
 # transfer the ssh public and private keys
 - include: keypair.yml
+  when: rails_deploy_ssh_keypair_copy
 
 # pre-git value of the seeds file to compare against the upcoming version
 - name: detect old db/seeds.rb state
