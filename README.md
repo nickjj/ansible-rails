@@ -62,12 +62,24 @@ rails_deploy_git_version: master
 # Just replace this with the path to your ruby binary.
 rails_deploy_shell_prefix: /usr/local/rvm/wrappers/default
 
+<<<<<<< HEAD
 # What apt packages are required for your app to run
 # Add 'libpq-dev' for Postgres, 'libmysqlclient-dev' for MySQL.
 # Note that 'git-core' will always be installed so as to check out the latest source code.
 rails_deploy_apt_packages_required:
   - libpq-dev
   # - imagemagick
+=======
+# What templates/files should be built between the git checkout and bundler steps?
+# All parameters must be specified: there are no defaults for owner/group/mode.
+# Note that you may need quote characters around the mode.
+# Templates and files should be placed in your base Ansible playbook directory.
+rails_deploy_templates:
+  - { src: templates/database.yml.j2, dest: /home/deploy/testproj.git/config/database.yml, owner: deploy, group: deploy, mode: "0600" }
+  - { src: templates/ldap.yml.j2, dest: /home/deploy/testproj.git/config/ldap.yml, owner: deploy, group: deploy, mode: "0600" }
+rails_deploy_files:
+  - { src: vendor/filename, dest: /home/deploy/testproj.git/vendor/filename, owner: deploy, group: deploy, mode: "0600" }
+>>>>>>> 4cc91e460df56a791ad99d6637852e9eb096d134
 
 # What command will start bundler? You shouldn't ever have to change this once you
 # have setup the shell prefix above unless you don't use rvm.

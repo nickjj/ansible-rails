@@ -18,6 +18,12 @@
 # update the app code from a remote git repo
 - include: git.yml
 
+# build any templates
+- include: templates.yml
+
+# copy any files
+- include: files.yml
+
 # post-git value of the seeds file to see if we need to seed the db
 - name: detect new db/seeds.rb state
   stat: path={{ rails_deploy_path }}/db/seeds.rb
