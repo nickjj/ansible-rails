@@ -1,5 +1,5 @@
 ---
-# install git and pg gem dependencies
+# install git and other app dependencies
 - include: dependencies.yml
 
 # write out an environment file so you can source it for adhoc commands

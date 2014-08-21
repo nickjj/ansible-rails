@@ -61,6 +61,13 @@ rails_deploy_git_version: master
 # Just replace this with the path to your ruby binary.
 rails_deploy_shell_prefix: /usr/local/rvm/wrappers/default
 
+# What apt packages are required for your app to run
+# Add 'libpq-dev' for Postgres, 'libmysqlclient-dev' for MySQL.
+# Note that 'git-core' will always be installed so as to check out the latest source code.
+rails_deploy_apt_packages_required:
+  - libpq-dev
+  # - imagemagick
+
 # What command will start bundler? You shouldn't ever have to change this once you
 # have setup the shell prefix above unless you don't use rvm.
 rails_deploy_bundle: "{{ rails_deploy_shell_prefix }}/bundle"
